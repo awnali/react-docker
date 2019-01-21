@@ -1,0 +1,8 @@
+sudo: require
+services:
+  - docker
+script:
+  - docker build . -t awnali/react-docker
+after_success:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push awnali/react-docker
